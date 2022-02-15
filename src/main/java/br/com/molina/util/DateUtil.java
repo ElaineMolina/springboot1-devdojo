@@ -1,4 +1,4 @@
-package br.com.molina.awsome.util;
+package br.com.molina.util;
 
 import org.springframework.stereotype.Component;
 
