@@ -1,4 +1,4 @@
-package br.com.molina.awsome.model;
+package br.com.molina.model;
 
 public class Student {
 
