@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("students")
@@ -29,8 +30,14 @@ public class StudentEndpoint {
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable("id") Long id) {
         verifyIfStudentExists(id);
-        return new ResponseEntity<>(studentDAO, HttpStatus.OK);
+        return new ResponseEntity<>(studentDAO.findById(id), HttpStatus.OK);
     }
+//    @GetMapping(path = "/{id}")
+//    public ResponseEntity<?> getStudentById(@PathVariable("id") Long id) {
+//        verifyIfStudentExists(id);
+//        Optional<Student> student = studentDAO.findById(id);
+//        return new ResponseEntity<>(student, HttpStatus.OK);
+//    }
 
     @GetMapping(path = "/findByName/{name}")
     public ResponseEntity<?> findStudentsByName(@PathVariable String name) {
@@ -58,8 +65,7 @@ public class StudentEndpoint {
     }
 
     private void verifyIfStudentExists(Long id) {
-        if (studentDAO.findById(id) == null)
+        if (studentDAO.findById(id).isEmpty())
             throw new ResourceNotFoundException("Student not found for ID: " + id);
-
     }
 }
