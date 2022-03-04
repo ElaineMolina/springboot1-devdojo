@@ -23,12 +23,12 @@
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
-    <show-object-properties value="true" />
+    <show-object-properties value="false" />
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="950692fb-8fff-4795-b4c4-0162af8578aa">
-      <console name="Connection" type="STANDARD" schema="school" session="Main" />
+      <console name="Connection" type="STANDARD" schema="school" session="Main"><![CDATA[select * from school.student;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
