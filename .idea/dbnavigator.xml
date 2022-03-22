@@ -38,6 +38,11 @@
     <connection id="950692fb-8fff-4795-b4c4-0162af8578aa" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="950692fb-8fff-4795-b4c4-0162af8578aa" dataset="school.user" active-filter-id="EMPTY_FILTER">
+      <filter id="aecaf0f3-6194-4d20-b9b9-abc906765211" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
     <filter-actions connection-id="950692fb-8fff-4795-b4c4-0162af8578aa" dataset="school.student" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
@@ -205,20 +210,20 @@
       <lookup-filters>
         <lookup-objects>
           <object-type name="SCHEMA" enabled="true" />
-          <object-type name="USER" enabled="false" />
-          <object-type name="ROLE" enabled="false" />
+          <object-type name="USER" enabled="true" />
+          <object-type name="ROLE" enabled="true" />
           <object-type name="PRIVILEGE" enabled="false" />
           <object-type name="CHARSET" enabled="false" />
           <object-type name="TABLE" enabled="true" />
           <object-type name="VIEW" enabled="true" />
-          <object-type name="MATERIALIZED VIEW" enabled="true" />
-          <object-type name="INDEX" enabled="true" />
-          <object-type name="CONSTRAINT" enabled="true" />
-          <object-type name="DATASET TRIGGER" enabled="true" />
-          <object-type name="DATABASE TRIGGER" enabled="true" />
+          <object-type name="MATERIALIZED VIEW" enabled="false" />
+          <object-type name="INDEX" enabled="false" />
+          <object-type name="CONSTRAINT" enabled="false" />
+          <object-type name="DATASET TRIGGER" enabled="false" />
+          <object-type name="DATABASE TRIGGER" enabled="false" />
           <object-type name="SYNONYM" enabled="false" />
-          <object-type name="SEQUENCE" enabled="true" />
-          <object-type name="PROCEDURE" enabled="true" />
+          <object-type name="SEQUENCE" enabled="false" />
+          <object-type name="PROCEDURE" enabled="false" />
           <object-type name="FUNCTION" enabled="true" />
           <object-type name="PACKAGE" enabled="true" />
           <object-type name="TYPE" enabled="true" />

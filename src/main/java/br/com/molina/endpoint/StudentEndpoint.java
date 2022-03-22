@@ -14,24 +14,23 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("students")
+@RequestMapping("v1")
 public class StudentEndpoint {
     private final StudentRepository studentDAO;
 
     @Autowired
-    public StudentEndpoint(StudentRepository studentDao) {
-        this.studentDAO = studentDao;
+    public StudentEndpoint(StudentRepository studentDAO) {
+        this.studentDAO = studentDAO;
     }
 
-    @GetMapping
+    @GetMapping(path = "students")
     public ResponseEntity<?> listAll(Pageable pageable) {
-        return new ResponseEntity<>(studentDAO.findAll(pageable), HttpStatus.OK);
+        return new ResponseEntity<>(studentDAO.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "students/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable("id") Long id,
                                             @AuthenticationPrincipal UserDetails userDetails) {
         System.out.println(userDetails);
@@ -45,26 +44,26 @@ public class StudentEndpoint {
 //        return new ResponseEntity<>(student, HttpStatus.OK);
 //    }
 
-    @GetMapping(path = "/findByName/{name}")
+    @GetMapping(path = "students/findByName/{name}")
     public ResponseEntity<?> findStudentsByName(@PathVariable String name) {
         return new ResponseEntity<>(studentDAO.findByNameIgnoreCaseContaining(name), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(path = "admin/students")
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<?> save(@Valid @RequestBody Student student) {
         return new ResponseEntity<>(studentDAO.save(student), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping(path = "admin/students/{id}")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         verifyIfStudentExists(id);
         studentDAO.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping
+    @PutMapping(path = "admin/students")
     public ResponseEntity<?> update(@RequestBody Student student) {
         verifyIfStudentExists(student.getId());
         studentDAO.save(student);
