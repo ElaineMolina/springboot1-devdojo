@@ -25,12 +25,12 @@ public class StudentEndpoint {
         this.studentDAO = studentDAO;
     }
 
-    @GetMapping(path = "students")
+    @GetMapping(path = "protected/students")
     public ResponseEntity<?> listAll(Pageable pageable) {
-        return new ResponseEntity<>(studentDAO.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(studentDAO.findAll(pageable), HttpStatus.OK);
     }
 
-    @GetMapping(path = "students/{id}")
+    @GetMapping(path = "protected/students/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable("id") Long id,
                                             @AuthenticationPrincipal UserDetails userDetails) {
         System.out.println(userDetails);
@@ -44,7 +44,7 @@ public class StudentEndpoint {
 //        return new ResponseEntity<>(student, HttpStatus.OK);
 //    }
 
-    @GetMapping(path = "students/findByName/{name}")
+    @GetMapping(path = "protected/students/findByName/{name}")
     public ResponseEntity<?> findStudentsByName(@PathVariable String name) {
         return new ResponseEntity<>(studentDAO.findByNameIgnoreCaseContaining(name), HttpStatus.OK);
     }

@@ -1,29 +1,25 @@
 package br.com.molina.javaclient;
 
 import br.com.molina.model.Student;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class JavaSpringClientTest {
     public static void main(String[] args) {
-        RestTemplate restTemplate = new RestTemplateBuilder()
-                .rootUri("http://localhost:8080/v1/students")
-                .basicAuthentication("toyo", "molina").build();
-        Student student = restTemplate.getForObject("/{id}", Student.class, 4);
-        ResponseEntity<Student> forEntity = restTemplate.getForEntity("/{id}", Student.class, 4);
-        System.out.println(student);
-        System.out.println(forEntity.getBody());
-        Student[] students = restTemplate.getForObject("/", Student[].class);
-        System.out.println(Arrays.toString(students));
-        ResponseEntity<List<Student>> exchange = restTemplate.exchange("/", HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<Student>>() {
-        });
-        System.out.println(exchange.getBody());
+
+        Student studentPost = new Student();
+        studentPost.setName("John Wick 2");
+        studentPost.setEmail("john@pencil.com");
+        studentPost.setId(28L);
+        JavaClientDAO dao = new JavaClientDAO();
+        //        studentPost.setId(29L);
+//        JavaClientDAO dao = new JavaClientDAO();
+//        System.out.println(dao.findById(111));
+//        List<Student> students = dao.listAll();
+//        System.out.println(students);
+//        System.out.println(dao.save(studentPost));
+//        dao.update(studentPost);
+        dao.delete(29);
+
     }
+
+
 }
